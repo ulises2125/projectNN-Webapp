@@ -6,7 +6,7 @@ const Services = () => (
     <Head>
       <title> Next.js Project - Services</title>
     </Head>
-    <h1>Services</h1>;
+    <h1>Services</h1>
   </Container>
 );
 

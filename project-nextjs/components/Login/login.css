@@ -1,0 +1,12 @@
+.div-general{
+    display:flex
+}
+
+.div-left{
+    width: 50%;
+    color: blue;
+}
+
+.div-right{
+    width: 50%;
+}
