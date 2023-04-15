@@ -1,0 +1,77 @@
+.divGeneral{
+    display:flex;
+    height: 40rem;
+    @media (max-width: 600px) {
+        width: 45rem;
+    }
+}
+
+.divLeft{
+    width: 50%;
+    background-color: #00aff0;
+    display:flex;
+    color:aliceblue;
+    justify-content: right;
+    align-items:baseline;
+    padding: 10rem;
+    @media (max-width: 600px) {
+        display: none;
+    }
+}
+
+.divRight{
+    width: 50%;
+    background-color: aliceblue;
+    display:flex;
+    justify-content:left;
+    align-items:flex-start;
+    padding: 10rem;
+    @media (max-width: 600px) {
+        width:100%;
+        padding: 2rem;
+    }
+}
+
+.center{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.input{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+.button{
+    width: 100%;
+    border: none;
+    height: 2rem;
+    border-radius: 5rem;
+    background-color: rgb(124, 233, 233);
+    color: aliceblue;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.buttonL{
+    margin:5px;
+    color: #00aff0;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.cabezal{
+    padding-bottom: 1rem;
+    color: aliceblue;
+    font-size: 0;
+    @media (max-width: 600px){
+        font-size: 20px;
+        color:black;
+    }
+}
