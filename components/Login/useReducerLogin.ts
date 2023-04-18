@@ -31,14 +31,16 @@ const useReducerLogin = () => {
   const [disable, setDisable] = useState<boolean>(false);
   const [error, setError] = useState({});
   const validateLogin = (data: any) => {
-    if (!data.email) {
-      $("#validateEmail").addClass(styles.invalid);
-      setError({ ...error, email: "Debe ingresar un email" });
+    if (!data) {
+      let inputEmail = $("#validateEmail");
+      console.log(inputEmail, "AAAAAAAAAA");
+      inputEmail.addClass(styles.invalid);
     }
   };
 
   const setEmail = (text: any) => {
     dispatch({ type: TYPES.SET_EMAIL, payload: text });
+    validateLogin(text);
   };
 
   const setPassword = (text: any) => {
