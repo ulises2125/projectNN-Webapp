@@ -45,6 +45,11 @@
     box-sizing: border-box;
 }
 
+.input.invalid{
+    border-color: red;
+}
+
+
 .button{
     width: 100%;
     border: none;
@@ -74,4 +79,10 @@
         font-size: 20px;
         color:black;
     }
+}
+
+.registerButton{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
 }
