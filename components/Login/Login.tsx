@@ -1,49 +1,14 @@
 import { useState, useEffect } from "react";
 import $ from "jquery";
 import styles from "./login.module.css";
-
+import useReducerLogin from "./useReducerLogin";
 interface Idata {
   email: string;
   password: string;
 }
 
 const Login = () => {
-  const [disable, setDisable] = useState<boolean>(false);
-  const [error, setError] = useState({});
-  const [data, setData] = useState<Idata>({
-    email: "",
-    password: "",
-  });
-
-  useEffect(() => {
-    if (!data.email) {
-      $("#validateEmail").addClass(styles.invalid);
-      setError({ ...error, email: "Debe ingresar un email" });
-    } else if (!/\S+@\S+.\S+/.test(styles.invalid)) {
-      $("#validateEmail").addClass(styles.invalid);
-      setError({ ...error, email: "El email debe ser válido" });
-    }
-    if (!data.password) {
-      $("#validatePassword").addClass(styles.invalid);
-      setError({ ...error, password: "Debe ingresar una contraseña" });
-    } else if (data.password.trim().length < 8) {
-      $("#validatePassword").addClass(styles.invalid);
-      setError({ ...error, password: "Debe tener mínimo 8 caracteres" });
-    } else if (!/^(?=.\d)(?=.[a-záéíóúüñ]).*[A-ZÁÉÍÓÚÜÑ]/.test(data.password)) {
-      $("#validatePassword").addClass(styles.invalid);
-      setError({
-        ...error,
-        password: "Debe tener una mayúscula, una minúscula y un dígito",
-      });
-    }
-  }, [data]);
-
-  const handleInputChange = (e: any) => {
-    setData({
-      ...data,
-      [e.target.name]: e.target.value,
-    });
-  };
+  const { setEmail, setPassword, validateLogin, state } = useReducerLogin();
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
@@ -68,20 +33,20 @@ const Login = () => {
             <form onSubmit={handleSubmit}>
               <input
                 id="validateEmail"
-                value={data.email}
+                value={state.email}
                 name="email"
                 className={styles.input}
                 placeholder="Correo"
-                onChange={handleInputChange}
+                onChange={(e) => setEmail(e.target.value)}
               />
               <span id="validateEmail"></span>
               <input
                 id="validatePassword"
-                value={data.password}
+                value={state.password}
                 name="password"
                 className={styles.input}
                 placeholder="Contraseña"
-                onChange={handleInputChange}
+                onChange={(e) => setPassword(e.target.value)}
               />
               <span id="validatePassword"></span>
               <button type="submit" className={styles.button}>
