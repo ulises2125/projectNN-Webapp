@@ -1,17 +1,29 @@
 import { useState, useEffect } from "react";
 import $ from "jquery";
 import styles from "./login.module.css";
-import useReducerLogin from "./useReducerLogin";
+import axios from "axios";
 interface Idata {
   email: string;
   password: string;
 }
 
 const Login = () => {
-  const { setEmail, setPassword, validateLogin, state } = useReducerLogin();
+  const [credentials, setCredentials] = useState({
+    email: "",
+    password: "",
+  });
 
-  const handleSubmit = (e: any) => {
+  const handleChange = (e: any) => {
+    setCredentials({
+      ...credentials,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
+    const response = await axios.post("/api/auth/login", credentials);
+    console.log(response);
   };
 
   return (
@@ -33,20 +45,20 @@ const Login = () => {
             <form onSubmit={handleSubmit}>
               <input
                 id="validateEmail"
-                value={state.email}
+                type="email"
                 name="email"
                 className={styles.input}
                 placeholder="Correo"
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={handleChange}
               />
               <span id="validateEmail"></span>
               <input
                 id="validatePassword"
-                value={state.password}
+                type="password"
                 name="password"
                 className={styles.input}
                 placeholder="Contraseña"
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={handleChange}
               />
               <span id="validatePassword"></span>
               <button type="submit" className={styles.button}>
